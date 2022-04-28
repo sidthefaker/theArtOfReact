@@ -1,8 +1,17 @@
-import React from 'react';
-import ValidationSample from './ValidationSample';
+import React, { Component } from 'react';
+import ScrollBox from './ScrollBox';
 
-const App = () => {
-  return <ValidationSample />;
+class App extends Component {
+  render () {
+    return (
+      <div>
+        <ScrollBox ref={(ref) => this.scrollBox=ref}/>
+        <button onClick={() => this.scrollBox.scrollToBottom()}>
+          to bottom
+        </button>
+      </div>
+    );
+  }
 }
 
 export default App;
