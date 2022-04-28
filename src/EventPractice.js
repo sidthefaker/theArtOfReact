@@ -1,54 +1,52 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-class EventPractice extends Component {
-  state = {
-    message: '',
-    username: ''
-  }
-
-  handleChange = (e) => {
-    this.setState({
+const EventPractice = () => {
+  const [form, setForm] = useState({
+    username: '',
+    message: ''
+  });
+  const {username, message} = form;
+  const onChange = e => {
+    const nextForm = {
+      ...form,
       [e.target.name]: e.target.value
-    });
+    };
+    setForm(nextForm);
   }
-
-  handleClick = () => {
-    alert(this.state.username + ":" + this.state.message);
-    this.setState({
+  const onClick = () => {
+    alert(username + ":" + message);
+    setForm({
       username: '',
       message: ''
     });
-  }
-
-  handleKeyPress = (e) => {
-    if(e.key === 'Enter') {
-      this.handleClick();
+  };
+  const onKeyPress = e => {
+    if (e.key === 'Enter') {
+      onClick();
     }
   }
 
-  render() {
-    return (
-      <div>
-        <h1>event practice</h1>
-        <input
-          type="text"
-          name="username"
-          placeholder="name"
-          value={this.state.username}
-          onChange={this.handleChange}
-        />
-        <input
-          type="text"
-          name="message"
-          placeholder="input anything"
-          value={this.state.message}
-          onChange={this.handleChange}
-          onKeyPress={this.handleKeyPress}
-        />
-        <button onClick={this.handleClick}>확인</button>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1>event practice</h1>
+      <input
+        type='text'
+        name='username'
+        placeholder='name'
+        value={username}
+        onChange={onChange}
+      />
+      <input
+        type='text'
+        name='message'
+        placeholder='message'
+        value={message}
+        onChange={onChange}
+        onKeyPress={onKeyPress}
+      />
+      <button onClick={onClick}>ok</button>
+    </div>
+  )
 }
 
 export default EventPractice;
